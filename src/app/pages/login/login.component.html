@@ -1,0 +1,79 @@
+<div class="form-container">
+  <h2>{{ activeForm === "Signup" ? "Signup Form" : "Login Form" }}</h2>
+
+  <div class="toggle-btns">
+    <button
+      [ngClass]="activeForm === 'Login' ? 'active' : ''"
+      (click)="changeView('Login')"
+    >
+      Login
+    </button>
+    <button
+      [ngClass]="activeForm === 'Signup' ? 'active' : ''"
+      (click)="changeView('Signup')"
+    >
+      Signup
+    </button>
+  </div>
+
+  <form *ngIf="activeForm === 'Signup'" #form="ngForm">
+    <input
+      type="text"
+      placeholder="Name"
+      name="fullName"
+      [(ngModel)]="registerObj.fullName"
+      required
+      #name="ngModel"
+    />
+    <div class="validation-message">
+      @if(name.errors?.['required']) {
+        <span>This is required</span>
+      }
+    </div>
+    <input
+      type="email"
+      #email="ngModel"
+      placeholder="Email Address"
+      name="email"
+      [(ngModel)]="registerObj.emailId"
+      required
+    />
+    <div class="validation-message">
+      @if(email.touched && email.errors?.['required']) {
+        <span>This is required</span>
+      }
+    </div>
+    <input
+      type="password"
+      placeholder="Password"
+      name="password"
+      [(ngModel)]="registerObj.password"
+      required
+      #password="ngModel"
+    />
+    <div class="validation-message">
+      @if(password.errors?.['required']) {
+        <span>This is required</span>
+      }
+    </div>
+    <button type="submit" (click)="onRegister()" class="submit-btn" [disabled]="form.invalid">Signup</button>
+    <p>
+      Already have an account?
+      <a href="#" (click)="changeView('Login')">Login</a>
+    </p>
+  </form>
+
+  <form *ngIf="activeForm === 'Login'">
+    <input type="text" placeholder="Username or Email" />
+    <input type="password" placeholder="Password" />
+    <div class="remember-me">
+      <input type="checkbox" id="remember" />
+      <label for="remember">Remember Me</label>
+    </div>
+    <button type="submit" class="submit-btn">Login</button>
+    <p>
+      Don't have an account?
+      <a href="#" (click)="changeView('Signup')">Signup</a>
+    </p>
+  </form>
+</div>

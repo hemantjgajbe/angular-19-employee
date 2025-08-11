@@ -10,6 +10,10 @@ import { MatRadioModule } from "@angular/material/radio";
 import { RouterModule } from "@angular/router";
 import { ColorNamePipe } from "./pipes/color-name.pipe";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+
 
 const sharable: Type<any>[] = [
     MatIconModule, 
@@ -22,7 +26,10 @@ const sharable: Type<any>[] = [
     RouterModule, 
     ReactiveFormsModule, 
     ColorNamePipe, 
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCheckboxModule
 ]
 
 @NgModule({
