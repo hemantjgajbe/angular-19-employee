@@ -1,24 +1,38 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-
-interface Employee {
-  name: string;
-  department: string;
-  phone: string;
-}
+import { Component, ComponentRef, inject, OnInit, viewChild, ViewChild, ViewContainerRef } from '@angular/core';
+import { EmployeeStore } from '../../store/employee.store';
+import { FormsModule } from '@angular/forms';
+import { Employee } from '../../models/employee.model';
+import { EmployeeFormComponent } from '../employee-form/employee-form.component';
 
 @Component({
   selector: 'app-employee-list',
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './employee-list.component.html',
   styleUrls: ['./employee-list.component.scss']
 })
 export class EmployeeListComponent {
-  employees: Employee[] = [
-    { name: 'John Doe', department: 'Administration', phone: '(171) 555-2222' },
-    { name: 'Peter Parker', department: 'Customer Service', phone: '(313) 555-5735' },
-    { name: 'Fran Wilson', department: 'Human Resources', phone: '(503) 555-9931' }
-  ];
+
+  readonly employeeStore = inject(EmployeeStore);
+
+  searchTerm = "";
+  pageSize = this.employeeStore.pageSize();
+  pageSizeOptions = [5, 10, 20];
+
+  @ViewChild('formContainer', { read: ViewContainerRef })
+  formContainer!: ViewContainerRef;
+
+   #componentRef?: ComponentRef<EmployeeFormComponent>;
+
+  // Dynamic components
+
+  // vcr = inject(ViewContainerRef);
+  vcr = viewChild('container', { read: ViewContainerRef })
+
+
+  constructor() {
+    this.employeeStore.loadEmployees();
+  }
 
   addEmployee() {
     alert('Add Employee Clicked');
@@ -32,7 +46,15 @@ export class EmployeeListComponent {
 
   deleteEmployee(emp: Employee) {
     if (confirm(`Are you sure you want to delete ${emp.name}?`)) {
-      this.employees = this.employees.filter(e => e !== emp);
+      // this.employees = this.employees.filter(e => e !== emp);
     }
+  }
+
+  openForm(employee?: Employee) {
+    // this.formContainer.clear();
+    // this.formRef = this.formContainer.createComponent(EmployeeFormComponent);
+    this.vcr()?.clear();
+    this.#componentRef = this.vcr()?.createComponent(EmployeeFormComponent);
+    this.#componentRef?.setInput('title', 'Weather');
   }
 }
