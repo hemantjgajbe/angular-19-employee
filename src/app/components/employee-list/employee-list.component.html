@@ -1,0 +1,30 @@
+<div class="employee-container">
+  <div class="employee-header">
+    <h2>Employee <span>Details</span></h2>
+    <button class="btn-add" (click)="addEmployee()">
+      <i class="fas fa-plus"></i> Add New
+    </button>
+  </div>
+
+  <table class="employee-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Department</th>
+        <th>Phone</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emp of employees">
+        <td>{{ emp.name }}</td>
+        <td>{{ emp.department }}</td>
+        <td>{{ emp.phone }}</td>
+        <td>
+          <i class="fas fa-pencil-alt edit" (click)="editEmployee(emp)"></i>
+          <i class="fas fa-trash delete" (click)="deleteEmployee(emp)"></i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
