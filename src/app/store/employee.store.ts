@@ -65,9 +65,9 @@ export const EmployeeStore = signalStore(
         deleteEmployee: rxMethod<number>(
             pipe(
                 switchMap((id) => employeeService.deleteEmployee(id)),
-                tap((deleteEmployee) =>
+                tap((deleteEmployeeId) =>
                     patchState(store, (state) => ({
-                        employees: state.employees.filter((emp) => deleteEmployee.id !== emp.id)
+                        employees: state.employees.filter((emp) => deleteEmployeeId !== emp.id)
                     }))
                 )
             )
@@ -95,7 +95,7 @@ export const EmployeeStore = signalStore(
             )
         )
     })),
-    withHooks(store => ({
+    // withHooks(store => ({
 
-    }))
+    // }))
 )

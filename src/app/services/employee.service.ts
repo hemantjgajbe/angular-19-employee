@@ -27,8 +27,8 @@ export class EmployeeService {
         return of(updatedEmployee);
     }
 
-    deleteEmployee(id: number): Observable<Employee> {
+    deleteEmployee(id: number): Observable<number> {
         this.employeeList = this.employeeList.filter(emp => emp.id === id);
-        return of({} as Employee);
+        return of(id);
     }
 }
