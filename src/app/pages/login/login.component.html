@@ -57,18 +57,29 @@
       }
     </div>
     <button
-      type="submit"
+      type="button"
       (click)="onRegister()"
       class="submit-btn"
       [disabled]="form.invalid"
+      [ngClass]="form.invalid ? 'disabled' : ''"
     >
       Signup
     </button>
   </form>
 
   <form *ngIf="activeForm === 'Login'">
-    <input type="text" placeholder="Username or Email" />
-    <input type="password" placeholder="Password" />
-    <button type="submit" class="submit-btn">Login</button>
+    <input
+      type="text"
+      placeholder="Username or Email"
+      name="emailId"
+      [(ngModel)]="loginObj.emailId"
+    />
+    <input
+      type="password"
+      placeholder="Password"
+      name="password"
+      [(ngModel)]="loginObj.password"
+    />
+    <button type="button" class="submit-btn" (click)="onLogin()">Login</button>
   </form>
 </div>

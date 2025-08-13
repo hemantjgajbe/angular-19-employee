@@ -87,7 +87,10 @@ form {
     border-radius: 10px;
     cursor: pointer;
     transition: background 0.3s;
-
+    &.disabled {
+      opacity: .5;
+      cursor:auto;
+    }
     &:hover {
       background: linear-gradient(135deg, #003d99, #0066cc);
     }

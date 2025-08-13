@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { DashboardComponent } from "../dashboard/dashboard.component";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-layout',
@@ -9,4 +10,10 @@ import { DashboardComponent } from "../dashboard/dashboard.component";
 })
 export class LayoutComponent {
 
+  router = inject(Router);
+
+  onLogOff() {
+    localStorage.removeItem('logData');
+    this.router.navigateByUrl("/login");
+  }
 }
