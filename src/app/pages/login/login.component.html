@@ -76,6 +76,11 @@
       required
       #emailId="ngModel"
     />
+    <div class="validation-message">
+      @if(emailId.touched && emailId.errors?.['required']) {
+      <span>This is required</span>
+      }
+    </div>
     <input
       type="password"
       placeholder="Password"
@@ -84,6 +89,11 @@
       required
       #password="ngModel"
     />
+    <div class="validation-message">
+      @if(password.touched && password.errors?.['required']) {
+      <span>This is required</span>
+      }
+    </div>
     <button
       type="button"
       class="submit-btn"

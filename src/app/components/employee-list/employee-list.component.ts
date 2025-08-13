@@ -22,11 +22,9 @@ export class EmployeeListComponent {
   @ViewChild('formContainer', { read: ViewContainerRef })
   formContainer!: ViewContainerRef;
 
-   #componentRef?: ComponentRef<EmployeeFormComponent>;
+  #componentRef?: ComponentRef<EmployeeFormComponent>;
 
   // Dynamic components
-
-  // vcr = inject(ViewContainerRef);
   vcr = viewChild('container', { read: ViewContainerRef })
 
 
@@ -34,25 +32,24 @@ export class EmployeeListComponent {
     this.employeeStore.loadEmployees();
   }
 
-  addEmployee() {
-    alert('Add Employee Clicked');
-    // Logic for adding new employee goes here
-  }
-
-  editEmployee(emp: Employee) {
-    alert(`Editing: ${emp.name}`);
-    // Logic for editing employee goes here
-  }
-
   deleteEmployee(emp: Employee) {
     if (confirm(`Are you sure you want to delete ${emp.name}?`)) {
-      // this.employees = this.employees.filter(e => e !== emp);
+      this.employeeStore.deleteEmployee(emp.id);
     }
   }
 
   openForm(employee?: Employee) {
     this.vcr()?.clear();
     this.#componentRef = this.vcr()?.createComponent(EmployeeFormComponent);
-    this.#componentRef?.setInput('name', 'Weather');
+    this.#componentRef?.setInput('title', employee ? "Edit Employee" : "Add Employee");
+    if (employee) {
+      this.#componentRef?.setInput('newEmployee', { id: employee.id, name: employee.name, department: employee.department, mobile: employee.mobile, isActive: employee.isActive });
+    } else {
+      this.#componentRef?.setInput('newEmployee', { id: 0, name: '', department: '', mobile: 0, isActive: false });
+    }
+
+    this.#componentRef?.instance.closed.subscribe(() => {
+      this.#componentRef?.destroy();
+    })
   }
 }

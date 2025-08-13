@@ -1,7 +1,4 @@
-# Try it yourself - Creating a signal store
-In this exercise we will repeat what I did in the **Colors Quiz** project, and add a signal store.
-
-Please repeat the following steps: 
+# Creating a signal store
 
 1. Create a `/store` folder and in it a `employee.slice.ts` file
    - Define an interface with the correct **Core State**
@@ -13,3 +10,5 @@ Please repeat the following steps:
 3. Consume the store into the app component
     - Inject the store using the `inject` function
     - Display the questions in the template
+
+   

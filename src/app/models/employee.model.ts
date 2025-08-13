@@ -2,6 +2,6 @@ export interface Employee {
     id: number;
     name: string;
     department: string;
-    mobile: number;
+    mobile: string;
     isActive: boolean;
 }

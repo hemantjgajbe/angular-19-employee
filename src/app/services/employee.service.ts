@@ -8,8 +8,8 @@ import { Observable, of } from "rxjs";
 
 export class EmployeeService {
     private employeeList: Employee[] = [
-        { id: 1, name: 'John Doe', department: 'test1', mobile: 1234, isActive: true },
-        { id: 2, name: 'Jane Smith', department: 'test2', mobile: 12343, isActive: true }
+        { id: 1, name: 'John Doe', department: 'test1', mobile: "1234", isActive: true },
+        { id: 2, name: 'Jane Smith', department: 'test2', mobile: "12343", isActive: true }
     ]
 
     getEmployees(): Observable<Employee[]> {
