@@ -10,5 +10,16 @@
 3. Consume the store into the app component
     - Inject the store using the `inject` function
     - Display the questions in the template
+4. Features implemented - List, Add, Edit, Delete, Pagination with next previous and page option selection
 
+# Dynamic component
+
+For Add and Edit Employee details created Dynamic modal having employee form as content
+
+# Syntax Related changes since Angular 16 implemented are
+
+1. CanActivate route 
+2. Control flow using if and for loop
+
+# For creating user third party api end point use - https://api.freeprojectapi.com/api/UserApp/CreateNewUser
    
