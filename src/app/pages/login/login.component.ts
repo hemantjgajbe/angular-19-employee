@@ -36,7 +36,7 @@ export class LoginComponent {
 
   onLogin() {
     this.userService.onLogin(this.loginObj).subscribe((res: any) => {
-      localStorage.setItem('logData', JSON.stringify(res.data));
+      sessionStorage.setItem('session', JSON.stringify(true));
       this.router.navigateByUrl("/dashboard")
     }, error => {
       alert("Wrong credentials");

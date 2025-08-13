@@ -13,7 +13,7 @@ export class LayoutComponent {
   router = inject(Router);
 
   onLogOff() {
-    localStorage.removeItem('logData');
+    sessionStorage.removeItem('session');
     this.router.navigateByUrl("/login");
   }
 }
