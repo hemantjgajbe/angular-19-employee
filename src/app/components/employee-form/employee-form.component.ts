@@ -2,10 +2,11 @@ import { Component, effect, EventEmitter, inject, input, Input, output, Output }
 import { Employee } from '../../models/employee.model';
 import { FormsModule } from '@angular/forms';
 import { EmployeeStore } from '../../store/employee.store';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-employee-form',
-  imports: [FormsModule],
+  imports: [FormsModule, NgClass],
   templateUrl: './employee-form.component.html',
   styleUrl: './employee-form.component.scss'
 })

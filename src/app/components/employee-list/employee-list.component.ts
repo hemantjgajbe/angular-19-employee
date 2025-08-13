@@ -45,7 +45,7 @@ export class EmployeeListComponent {
     if (employee) {
       this.#componentRef?.setInput('newEmployee', { id: employee.id, name: employee.name, department: employee.department, mobile: employee.mobile, isActive: employee.isActive });
     } else {
-      this.#componentRef?.setInput('newEmployee', { id: 0, name: '', department: '', mobile: 0, isActive: false });
+      this.#componentRef?.setInput('newEmployee', { id: 0, name: '', department: '', mobile: '', isActive: false });
     }
 
     this.#componentRef?.instance.closed.subscribe(() => {

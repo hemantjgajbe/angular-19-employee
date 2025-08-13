@@ -1,27 +1,57 @@
 <div class="modal-overlay">
   <div class="modal-container">
-    <h2 class="modal-title">{{title()}}</h2>
+    <h2 class="modal-title">{{ title() }}</h2>
 
-    <div class="form-group">
-      <input type="text" placeholder="Name" [(ngModel)]="newEmployee().name" />
-    </div>
+    <form #form="ngForm">
+      <div class="form-group">
+        <input
+          type="text"
+          placeholder="Name"
+          [(ngModel)]="newEmployee().name"
+          name="name"
+          required
+          #name="ngModel"
+        />
+      </div>
 
-    <div class="form-group">
-      <input type="text" placeholder="Department" [(ngModel)]="newEmployee().department" />
-    </div>
+      <div class="form-group">
+        <input
+          type="text"
+          placeholder="Department"
+          [(ngModel)]="newEmployee().department"
+          name="department"
+          #department="ngModel"
+          required
+        />
+      </div>
 
-    <div class="form-group">
-      <input type="text" placeholder="Mobile" [(ngModel)]="newEmployee().mobile" />
-    </div>
+      <div class="form-group">
+        <input
+          type="text"
+          placeholder="Mobile number"
+          [(ngModel)]="newEmployee().mobile"
+          name="mobile"
+          #mobile="ngModel"
+          required
+        />
+      </div>
 
-    <div class="form-group checkbox-group">
-      <label>
-        <input type="checkbox" [(ngModel)]="newEmployee().isActive" />
-        Active
-      </label>
-    </div>
+      <div class="form-group checkbox-group">
+        <label>
+          <input type="checkbox" [(ngModel)]="newEmployee().isActive" />
+          Active
+        </label>
+      </div>
 
-    <button class="btn-primary" (click)="onSaveEmployee()">Save</button>
-    <button class="btn-secondary" (click)="cancel()" >Cancel</button>
+      <button
+        class="btn-primary"
+        (click)="onSaveEmployee()"
+        [disabled]="form.invalid"
+        [ngClass]="form.invalid ? 'disabled' : ''"
+      >
+        Save
+      </button>
+      <button class="btn-secondary" (click)="cancel()">Cancel</button>
+    </form>
   </div>
 </div>

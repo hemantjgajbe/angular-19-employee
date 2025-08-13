@@ -15,8 +15,8 @@
       Signup
     </button>
   </div>
-
-  <form *ngIf="activeForm === 'Signup'" #form="ngForm">
+  @if(activeForm === 'Signup') {
+  <form #form="ngForm">
     <input
       type="text"
       placeholder="Name"
@@ -66,8 +66,8 @@
       Signup
     </button>
   </form>
-
-  <form *ngIf="activeForm === 'Login'" #form="ngForm">
+  } @if(activeForm === 'Login') {
+  <form #form="ngForm">
     <input
       type="text"
       placeholder="Username or Email"
@@ -104,4 +104,5 @@
       Login
     </button>
   </form>
+  }
 </div>
