@@ -51,10 +51,8 @@ export class EmployeeListComponent {
   }
 
   openForm(employee?: Employee) {
-    // this.formContainer.clear();
-    // this.formRef = this.formContainer.createComponent(EmployeeFormComponent);
     this.vcr()?.clear();
     this.#componentRef = this.vcr()?.createComponent(EmployeeFormComponent);
-    this.#componentRef?.setInput('title', 'Weather');
+    this.#componentRef?.setInput('name', 'Weather');
   }
 }

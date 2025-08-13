@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { Component, effect, EventEmitter, inject, input, Input, output, Output } from '@angular/core';
 import { Employee } from '../../models/employee.model';
 import { FormsModule } from '@angular/forms';
 import { EmployeeStore } from '../../store/employee.store';
@@ -11,10 +11,18 @@ import { EmployeeStore } from '../../store/employee.store';
 })
 export class EmployeeFormComponent {
   employeeStore = inject(EmployeeStore);
+  readonly name = input<string>();
+  readonly department = input<string>();
+  readonly mobile = input<number>();
+  readonly isActive = input<boolean>();
 
-  @Output() close = new EventEmitter<boolean>();
+  closed = output<void>()
 
   newEmployee: Employee = { id: 0, name: '', department: '', mobile: 0, isActive: false };
+
+  constructor() {
+    console.log(this.name());
+  }
 
   onSaveEmployee() {
     if (this.newEmployee.id === 0) {
@@ -23,6 +31,7 @@ export class EmployeeFormComponent {
       this.employeeStore.updateEmployee(this.newEmployee);
     }
     this.resetForm();
+    this.cancel();
   }
 
   onEditEmployee(employee: Employee): void {
@@ -35,5 +44,9 @@ export class EmployeeFormComponent {
 
   resetForm() {
     this.newEmployee = { id: 0, name: '', department: '', mobile: 0, isActive: false }
+  }
+
+  cancel() {
+    this.closed.emit()
   }
 }

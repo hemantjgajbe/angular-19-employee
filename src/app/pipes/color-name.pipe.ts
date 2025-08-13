@@ -1,5 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { displayNameOfColor } from '../services/helpers';
 
 @Pipe({
   name: 'colorName',
@@ -8,7 +7,7 @@ import { displayNameOfColor } from '../services/helpers';
 export class ColorNamePipe implements PipeTransform {
 
   transform(value: string): string {
-    return displayNameOfColor(value);
+    return "ull";
   }
 
 }
