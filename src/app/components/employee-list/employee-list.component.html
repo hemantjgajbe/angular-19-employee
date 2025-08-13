@@ -1,6 +1,6 @@
 <div class="employee-container">
   <div class="employee-header">
-    <h2>Employee <span>Details</span></h2>
+    <h2>Employee List</h2>
   </div>
 
   <div class="toolbar">
@@ -10,28 +10,35 @@
       [(ngModel)]="searchTerm"
       (ngModelChange)="employeeStore.setSearchTerm(searchTerm)"
     />
-    <button class="add-btn" (click)="openForm()">➕ Add New</button>
+    <button class="add-btn" (click)="openForm()">Add New</button>
   </div>
-  <div *ngIf="employeeStore.isLoading()">Loading employees</div>
+
+  @if(employeeStore.isLoading()) {
+  <div>Loading employees</div>
+  } @else {
   <table class="employee-table">
     <thead>
       <tr>
         <th>Name</th>
         <th>Department</th>
-        <th>Phone</th>
+        <th>Mobile</th>
+        <th>Status</th>
         <th>Actions</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let emp of employeeStore.employeesFilterAndPaginated()">
+      @for( emp of employeeStore.employeesFilterAndPaginated(); track $index) {
+      <tr>
         <td>{{ emp.name }}</td>
         <td>{{ emp.department }}</td>
         <td>{{ emp.mobile }}</td>
+        <td>{{ emp.isActive ? "Active" : "In Active" }}</td>
         <td>
           <i class="fas fa-pencil-alt edit" (click)="openForm(emp)"></i>
           <i class="fas fa-trash delete" (click)="deleteEmployee(emp)"></i>
         </td>
       </tr>
+      }
     </tbody>
   </table>
   <div class="pagination">
@@ -60,5 +67,7 @@
       </option>
     </select>
   </div>
+  }
+
   <ng-container #container></ng-container>
 </div>
